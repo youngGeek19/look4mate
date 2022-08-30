@@ -1,0 +1,58 @@
+{% extends "chat/base.html" %}
+{% load static %}
+
+{% block title %}Мессенджер{% endblock title %}
+
+{% block static_root %}
+<link rel="stylesheet" href="{% static 'chat/css/chat.css' %}">
+{% endblock static_root %}
+
+{% block header %}
+{% include "chat/include/header.html" %}
+{% endblock header %}
+
+{% block sidebar %}
+{% include "chat/include/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block aside %}
+{% include "chat/include/aside.html" %}
+{% endblock aside %}
+
+{% block chat %}
+<form class="message__search">
+    <input class="message__search__input" type="search" placeholder="Поиск" aria-label="Поиск">
+</form>
+<div class="content">
+    <div class="message__block">
+    {% if chats %}
+        <ul class="message__list">
+            {% for chat in chats %}
+            <li class="message__item">
+                <a class="message__link" href="{% url 'chat:dialog' chat_id=chat.id %}">
+                    <img class="message__img"src="{{ chat.user_first.user_profile.avatar.url }}" alt="">
+                    <div class="message__info">
+                        <h5 class="message__name">{{ chat.user_first.get_full_name }}</h5>
+                        <div class="message__context">
+                            <img class="context__img" src="{{ chat.user_first.user_profile.avatar.url }}" alt="">
+                            <span class="context__text">
+                                 {{ chat.chat_messages.text|truncatewords:'5' }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="warning">
+            <h5 class="text">У вас нет чатов</h5>
+            <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+        </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock chat %}
+
+
+

@@ -1,0 +1,41 @@
+{% extends "user_auth/base.html" %}
+{% load static %}
+
+{% block title %}
+Авторизация
+{% endblock title %}
+
+{% block static_root %}
+<link rel="stylesheet" href="{% static 'user_auth/css/login.css' %}">
+{% endblock static_root %}
+
+{% block header_btn %}
+<a href="{% url 'user_auth:register' %}" class="reg__btn">
+    регистрация            
+</a>                
+{% endblock header_btn %}
+
+{% block content %}
+<section class="login">
+    <div class="login__inner">
+        <form class="login__form" action="." method="post" id="login_form">
+            {% csrf_token %}
+            <h3 class="form__title">Авторизуйтесь</h3>
+            {{ form }}
+            <div class="btn">
+                <a class="form__button" href="#" onclick="document.forms['login_form'].submit();">
+                    Авторизоваться
+                </a>
+            </div>
+            <div class="go__reg">
+                <span class="go__reg-text">
+                    Нет аккаунта?
+                </span>
+                <a class="go__reg-link" href="{% url 'user_auth:register' %}">
+                    Зарегистрируйтесь
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}

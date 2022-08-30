@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'user_auth/css/normalize.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    {% block static_root %}{% endblock %}
+</head>
+<body style='background-image: url("{% static 'user_auth/images/background_pyth2.jpg' %}")'>
+<header class="header">
+    <div class="container">
+        <header class="header__inner">
+            <a class="header__logo" href="#">
+                <span class="logo_1">Look4</span>
+                <span class="logo_2">Mate</span>
+            </a>
+            {% block header_btn %}
+            {% endblock header_btn %}
+        </header>
+    </div>
+</header>
+{% block content %}
+{% endblock content %}
+<script src="{% static 'user_auth/js/jquery.min.js' %}"></script>
+<script src="{% static 'user_auth/js/main.js' %}"></script>
+</body>
+</html>

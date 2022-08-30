@@ -1,0 +1,100 @@
+@import 'sidebar.css';
+@import 'header.css';
+/*Profile section*/
+.content{
+    height: 100%;
+    width: 75%;
+    margin-left: 20%;
+    padding: 15px 0;
+}
+.edit__profile{
+    box-shadow: 0 0 20px rgba(8, 7, 16, 0.1);
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 50px;
+}
+.form__inputs{
+    padding: 0 100px;
+}
+.username{
+    margin-bottom: 10px;
+}
+.username + .username{
+}
+.surname{
+    margin-bottom: 50px;
+}
+.num + .num{
+    margin-top: 10px;
+}
+.work{
+    margin-bottom: 50px;
+}
+.login__form {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    padding: 40px 35px;
+}
+form * {
+    color: #333;
+    letter-spacing: 0.5px;
+    outline: none;
+}
+
+.form__title{
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.password{
+    margin-bottom: 12px;
+}
+.username,
+.num{
+    display: block;
+    height: 43px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    border: 1px solid #03989e;
+
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+.username:focus,
+.num:focus{
+    border: 1px solid #ffde59;
+}
+::placeholder {
+    color: grey;
+}
+.form__button {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #03989e;
+    color: #ffde59;
+    padding: 15px 0;
+    letter-spacing: .1em;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: 1px solid #03989e;
+    cursor: pointer;
+
+    transition: all .3s;
+}
+.form__button:hover{
+    background: transparent;
+    border: 1px solid #03989e;
+    color: #03989e;
+}

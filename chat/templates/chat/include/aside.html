@@ -1,0 +1,43 @@
+<div class="aside">
+    <div class="aside__rec">
+        {% if section == 'chats' %}
+            <div class="rec__group">
+                <a class="rec__link current" href="{% url 'chat:chat' %}">
+                    <span class="group__name">Все чаты</span>
+                </a>
+            </div>
+            <div class="rec__group">
+                <a class="rec__link" href="#">
+                    <span class="group__name">Непрочитанные</span>
+                </a>
+            </div>
+        {% elif section == 'chat' %}
+            <div class="rec__group">
+                <a class="rec__link" href="{% url 'chat:chat' %}">
+                    <span class="group__name">Все чаты</span>
+                </a>
+            </div>
+            <div class="rec__group">
+                <a class="rec__link" href="#">
+                    <span class="group__name">Непрочитанные</span>
+                </a>
+            </div>
+            <div class="rec__group">
+                <a class="rec__link current" href="#">
+                    <span class="group__name">Ilnaz Karimov</span>
+                </a>
+            </div>
+        {% elif section == 'nonread__chats' %}
+            <div class="rec__group">
+                <a class="rec__link" href="{% url 'chat:chat' %}">
+                    <span class="group__name">Все чаты</span>
+                </a>
+            </div>
+            <div class="rec__group current">
+                <a class="rec__link" href="#">
+                    <span class="group__name">Непрочитанные</span>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>

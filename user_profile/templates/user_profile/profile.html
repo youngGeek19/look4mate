@@ -1,0 +1,134 @@
+{% extends "user_profile/base.html" %}
+{% load static %}
+
+{% block title %}Профиль{% endblock title %}
+
+{% block static_root %}
+<link rel="stylesheet" href="{% static 'user_profile/css/profile.css' %}">
+{% endblock static_root %}
+
+{% block header %}
+{% include "user_profile/include/header.html" %}
+{% endblock header %}
+
+{% block sidebar %}
+{% include "user_profile/include/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+<div class="profile">
+    <div class="prof__inf">
+        <div class="profile__avatar">
+            {% if user.user_profile.avatar %}
+                <img class="profile__img" width="120" height="120" src="{{ user.user_profile.avatar.url }}" alt="">
+            {% else %}
+                <img class="profile__img" width="120" height="120" src="{% static 'user_profile/images/default_avatar.jpg' %}" alt="">
+            {% endif %}
+            <h3 class="profile__name">
+                {{ user.get_full_name }}
+            </h3>
+            <span class="profile__username">
+                @{{ user.get_username }}
+            </span>
+            <a class="edit__link" href="{% url 'user_profile:edit_profile' %}">
+                Редактировать
+            </a>
+        </div>
+        <div class="profile__info">
+            <ul class="info__list">
+                <li class="info__item">
+                    <span class="info__value">Статус:</span>
+                    <span class="info__value status">Онлайн</span>
+                </li>
+                <li class="info__item">
+                    <span class="info__value">Направление в IT:</span>
+                    <span class="info__value">{{ user.user_profile.it_stack|default:'Не указано' }}</span>
+                </li>
+                <li class="info__item">
+                    <span class="info__value">Опыт работы:</span>
+                    <span class="info__value">{{ user.user_profile.work_exp|default:'Не указано' }}</span>
+                </li>
+                <li class="info__item">
+                    <span class="info__value">Возраст:</span>
+                    <span class="info__value">{{ user.user_profile.age|default:'Не указано' }}</span>
+                </li>
+                <li class="info__item">
+                    <span class="info__value">Локация:</span>
+                    <span class="info__value">{{ user.user_profile.location|default:'Не указано' }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="profile__stats">
+        <ul class="stats">
+            <li class="stats__item">
+                <span class="stats__num">0</span>
+                <span class="stats__name">Тимейты</span>
+            </li>
+            <li class="stats__item">
+                <span class="stats__num">{{ posts.count }}</span>
+                <span class="stats__name">Посты</span>
+            </li>
+            <li class="stats__item">
+                <span class="stats__num">0</span>
+                <span class="stats__name">Проекты</span>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock content %}
+
+{% block wall %}
+<div class="create__post">
+    <div class="user__info">
+        <a class="user__link" href="">
+            <img class="user__img" width="40" height="40" src="{% static 'user_profile/images/default_avatar.jpg' %}" alt="">
+        </a>
+    </div>
+    <div class="post__text">
+        <form class="post__form" id="post_form" action="." method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div class="post__send">
+                <a class="send__btn" onclick="document.forms['post_form'].submit();" href="#">
+                    Опубликовать
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% if posts %}
+{% for post in posts %}
+<div class="post">
+    <div class="post__user">
+        <a class="post__link" href="">
+            <img class="post__img" width="40" height="40" src="{% static 'user_profile/images/default_avatar.jpg' %}" alt="">
+            <div class="post__time">
+                <span class="user__name">{{ user.get_full_name }}</span><br>
+                <span class="published__time">{{ post.published }}</span>
+            </div>
+        </a>
+    </div>
+    <div class="post__content">
+        {{ post.body }}
+    </div>
+    <div class="act__post">
+        <a href="#" class="act__link">
+            <span class="icon"><ion-icon name="heart-outline"></ion-icon></span><!-- Like  -->
+        </a>
+        <a href="#" class="act__link">
+            <span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></span><!-- Comment -->
+        </a>
+        <a href="#" class="act__link dropdown">
+            <span class="icon"><ion-icon name="share-social-outline"></ion-icon></span>
+            <div class="dropdown-content">
+                <a href='#'>Hello World!</a>
+            </div>
+        </a>    
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock wall %}
+
+

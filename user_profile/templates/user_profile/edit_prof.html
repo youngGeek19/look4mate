@@ -1,0 +1,61 @@
+{% extends 'user_profile/base.html' %}
+{% load static %}
+
+{% block title %}
+Редактировать профиль
+{% endblock title %}
+
+{% block static_root %}
+<link rel="stylesheet" href="{% static 'user_profile/css/edit_prof.css' %}">
+{% endblock static_root %}
+
+{% block header %}
+{% include "user_profile/include/header.html" %}
+{% endblock header %}
+
+{% block sidebar %}
+{% include "user_profile/include/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block content %}
+<main class="main">
+    <div class="content">
+        <div class="edit__profile">
+            <form class="login__form" method="post" action="." enctype="multipart/form-data">
+                {% csrf_token %}
+                <h3 class="form__title">
+                    Редактировать профиль
+                </h3>
+                <div class="form__inputs"> 
+                    {% if messages %}
+                        <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}" style="font-weight: 700; font-size: 15px; margin-right: 15px">
+                                {{ message}}
+                                <a href="{% url 'user_profile:edit_profile' %}" class="close">X</a>
+                            </li>
+                        {% endfor %} 
+                        </ul>
+                    {% endif %}                           
+                    {{ form }}
+                    <datalist id="location">
+                        <option value="Российская Федерация">
+                        <option value="Турция">
+                        <option value="Китай">
+                        <option value="CША">
+                    </datalist>
+                    <datalist id="stack">
+                        <option value="Web dev">
+                        <option value="Mobile dev">
+                        <option value="AI">
+                        <option value="Design">
+                    </datalist>
+                    <button class="form__button" type="submit">
+                        Сохранить изменения
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock content %}

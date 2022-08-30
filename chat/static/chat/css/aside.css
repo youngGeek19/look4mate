@@ -1,0 +1,76 @@
+/*Aside section*/
+.aside{
+    position: fixed;
+    padding: 20px 30px;
+    height: 100%;
+    width: 25%;
+    right: 0;
+}
+.aside__rec{
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(8, 7, 16, 0.1);
+    margin-bottom: 30px;
+}
+.group__count{
+    font-size: 10px;
+    color: #333;
+    opacity: .8;
+}
+.rec__group + .rec__group{
+    margin-top: 10px;
+}
+.rec__name{
+    margin-top: 10px;
+}
+.rec__img{
+    border: 3px solid #03989e;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.rec__link{
+    padding: 0 5px;
+    font-size: 16px;
+    transition: all .3s;
+    display: flex;
+    align-items: center;
+    border-right: 2px solid #fff;
+    border-left: 2px solid #fff;
+}
+.rec__link:hover{
+    color: #03989e;
+    border-right: 2px solid #03989e;
+    border-left: 2px solid #03989e;
+}
+.aside__friend{
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(8, 7, 16, 0.1);
+}
+.friend__count{
+    font-size: 10px;
+    color: #333;
+    opacity: .8;
+}
+.friend__link + .friend__link{
+    margin-top: 10px;
+}
+.friend__img{
+    border: 3px solid #03989e;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.friend__link{
+    padding: 0 5px;
+    font-size: 16px;
+    transition: all .3s;
+    display: flex;
+    align-items: center;
+    border-right: 2px solid #fff;
+    border-left: 2px solid #fff;
+}
+.friend__link:hover{
+    color: #03989e;
+    border-right: 2px solid #03989e;
+    border-left: 2px solid #03989e;
+}

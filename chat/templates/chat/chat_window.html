@@ -1,0 +1,68 @@
+{% extends "chat/base.html" %}
+{% load static %}
+
+{% block title %}Чат{% endblock title %}
+
+{% block static_root %}
+<link rel="stylesheet" href="{% static 'chat/css/chat_window.css' %}">
+{% endblock static_root %}
+
+{% block header %}
+{% include "chat/include/header.html" %}
+{% endblock header %}
+
+{% block sidebar %}
+{% include "chat/include/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block aside %}
+{% include "chat/include/aside.html" %}
+{% endblock aside %}
+
+{% block chat %}
+<div class="user">
+    <a class="username" href="#">Ilnaz Karimov</a>
+    <span class="status">Online</span>
+</div>
+<div class="chatblock">
+    <div class="chatblock__inner">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="chatblock__message">
+                <a class="chatblock__avatar" href="#">
+                    <img class="message__img" width="40" height="40" src="{{ message.user_sent.user_profile.url }}" alt="">
+                </a>
+                <div class="chatblock__content">
+                    <div class="chatblock__userinfo">
+                        <h5 class="chatblock__username">{ message.user_sent.get_first_name }}</h5>
+                        <span class="chatblock__time">{ message.sent_date }}</span>
+                    </div>
+                    <p class="chatblock__text">
+                        {{ message.text }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <div class="warning">
+            <h5 class="text">Начните переписку</h5>
+            <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<div class="sendmessage">
+    <div class="post__text">
+        <form class="post__form" action=".">
+            <textarea class="textarea" required name="" id="message_place" placeholder="Напишите сообщение" cols="30" rows="10"></textarea>
+        </form>
+        <div class="sendmessage__btn">
+            <a class="btn" href="#" id="send_btn">
+                <span class="icon sendmes"><ion-icon name="send-outline"></ion-icon></span>
+            </a>
+        </div>
+        {{ chat_id|json_script:"chat-id" }}
+        {{ user_name|json_script:"user-name" }}
+    </div>
+</div>
+{% endblock chat %}
